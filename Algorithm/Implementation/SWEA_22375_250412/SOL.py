@@ -1,22 +1,19 @@
 import sys
-sys.stdin = open('input.txt','r')
-#########################################
+sys.stdin = open('input.txt','r')  # 테스트 입력 파일 열기
 
-T = int(input()) # test case 개수를 받아오는 코드
-for tc in range(1, T+1):
-    N = int(input())   #N: 양의 정수 개수
-    start_switch = list(map(int,input().split()))
-    target_switch = list(map(int, input().split()))
-    result=0
+T = int(input())  # 테스트 케이스 수
+
+for tc in range(1, T + 1):
+    N = int(input())  # 스위치 개수
+    start_switch = list(map(int, input().split()))  # 시작 상태
+    target_switch = list(map(int, input().split()))  # 목표 상태
+
+    result = 0  # 반전 횟수
+
     for i in range(N):
-        #만약 현재값이 목표 스위치와 다르면
-        if start_switch[i] != target_switch[i]:
-            #i 부터 길이끝까지
-            for j in range(i,N):
-                #스타트위치를 0은 1로 1은 0으로 바꿈
-                start_switch[j]=1-start_switch[j]
-            result+=1
-
-
+        if start_switch[i] != target_switch[i]:  # 다른 위치가 발견되면
+            for j in range(i, N):  # 그 위치부터 끝까지 뒤집기
+                start_switch[j] = 1 - start_switch[j]  # 0↔1 반전
+            result += 1  # 연산 1회 추가
 
     print(f"#{tc} {result}")
